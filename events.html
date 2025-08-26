@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events - Tech Zephyr</title>
+    <meta
+      name="description"
+      content="Discover our lineup of exciting workshops, competitions, and social events at Tech Zephyr 2025."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Events Page Specific Styles */
+      .events-section {
+        padding: 0 0 4rem;
+      }
+
+      .search-filter {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .search-container {
+        position: relative;
+        flex: 1;
+      }
+
+      .search-container input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border: 1px solid var(--slate-300);
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+      }
+
+      .search-container i {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--slate-400);
+      }
+
+      .category-buttons {
+        display: flex;
+        overflow-x: auto;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      .category-button {
+        padding: 0.5rem 1rem;
+        background-color: var(--slate-100);
+        color: var(--slate-700);
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: var(--transition);
+      }
+
+      .category-button.active {
+        background-color: var(--primary-color);
+        color: var(--slate-900);
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .event-card {
+        background-color: var(--white);
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--slate-100);
+        transition: var(--transition);
+      }
+
+      .event-card:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      .event-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .event-card:hover .event-image img {
+        transform: scale(1.05);
+      }
+
+      .event-content {
+        padding: 1.5rem;
+      }
+
+      .event-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.75rem;
+      }
+
+      .event-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--slate-900);
+        margin-bottom: 0.25rem;
+      }
+
+      .event-category {
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      .event-category.competition {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .event-category.workshop {
+        background-color: #f3e8ff;
+        color: #6b21a8;
+      }
+
+      .event-category.social {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .event-description {
+        color: var(--slate-600);
+        margin-bottom: 1.25rem;
+      }
+
+      .event-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .event-meta-item {
+        display: flex;
+        align-items: center;
+        font-size: 0.875rem;
+        color: var(--slate-700);
+      }
+
+      .event-meta-item i {
+        margin-right: 0.375rem;
+        color: var(--slate-500);
+      }
+
+      .event-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .toggle-details {
+        display: flex;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .toggle-details:hover {
+        color: var(--primary-dark);
+      }
+
+      .toggle-details i {
+        margin-left: 0.25rem;
+        transition: transform 0.3s ease;
+      }
+
+      .toggle-details.active i {
+        transform: rotate(180deg);
+      }
+
+      .event-details {
+        background-color: var(--slate-50);
+        border-top: 1px solid var(--slate-100);
+        padding: 1.5rem;
+        display: none;
+      }
+
+      .event-details.active {
+        display: block;
+      }
+
+      .event-details h4 {
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+        color: var(--slate-900);
+      }
+
+      .event-details ul {
+        margin-bottom: 1rem;
+      }
+
+      .event-details li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        color: var(--slate-700);
+      }
+
+      .event-details li::before {
+        content: "•";
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+      }
+
+      .event-details p {
+        color: var(--slate-700);
+      }
+
+      .no-events {
+        text-align: center;
+        padding: 3rem 0;
+        display: none;
+      }
+
+      .no-events p {
+        font-size: 1.125rem;
+        color: var(--slate-600);
+        margin-bottom: 1rem;
+      }
+
+      .clear-filters {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        cursor: pointer;
+        transition: var(--transition);
+        background: none;
+        border: none;
+        padding: 0.5rem 1rem;
+      }
+
+      .clear-filters:hover {
+        color: var(--primary-dark);
+      }
+
+      @media (min-width: 768px) {
+        .search-filter {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .events-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 992px) {
+        .events-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header (Same as index.html) -->
+    <!-- <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/placeholder.svg" alt="Tech Zephyr" width="200" height="60">
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li><a href="events.html" class="active">Events</a></li>
+                        <li><a href="ambassador.html">Ambassador</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="register.html" class="btn btn-primary">Register Now</a>
+                    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                        <span class="hamburger"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header> -->
+
+    <!-- Mobile Menu (Same as index.html) -->
+    <div class="mobile-menu">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="ambassador.html">Ambassador</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <a href="register.html" class="btn btn-primary mobile-btn"
+              >Register Now</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="page-hero">
+        <div class="container">
+          <h1>Tech Zephyr Events</h1>
+          <p>
+            Discover our lineup of exciting workshops, competitions, and social
+            events. Find the perfect opportunities to learn, compete, and
+            connect with fellow tech enthusiasts.
+          </p>
+        </div>
+      </section>
+
+      <!-- Events Section -->
+      <section class="events-section">
+        <div class="container">
+          <div id="events-container">
+            <div class="search-filter">
+              <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search events..."
+                />
+              </div>
+
+              <div class="category-buttons">
+                <div class="category-button active" data-category="all">
+                  All Events
+                </div>
+                <div class="category-button" data-category="competition">
+                  Competitions
+                </div>
+                <div class="category-button" data-category="workshop">
+                  Workshops
+                </div>
+                <div class="category-button" data-category="social">
+                  Social Events
+                </div>
+              </div>
+            </div>
+
+            <div class="events-grid">
+              <!-- Event 1 -->
+              <div class="event-card" data-category="competition">
+                <div class="event-image">
+                  <img src="images/placeholder.svg" alt="48-Hour Hackathon" />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">48-Hour Hackathon</h3>
+                    <span class="event-category competition">Competition</span>
+                  </div>
+                  <p class="event-description">
+                    Build innovative solutions to real-world challenges in this
+                    intensive 48-hour coding marathon.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$30</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>2-5 members</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-award"></i>
+                      <span>$10,000 in prizes</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="1">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=1" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-1">
+                  <h4>Competition Rules</h4>
+                  <ul>
+                    <li>All code must be written during the hackathon</li>
+                    <li>Teams of 2-5 participants</li>
+                    <li>
+                      Projects must address one of the provided challenges
+                    </li>
+                    <li>
+                      Judging based on innovation, functionality, and
+                      presentation
+                    </li>
+                    <li>Participants must bring their own devices</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Event 2 -->
+              <div class="event-card" data-category="workshop">
+                <div class="event-image">
+                  <img src="images/placeholder.svg" alt="AI Workshop Series" />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">AI Workshop Series</h3>
+                    <span class="event-category workshop">Workshop</span>
+                  </div>
+                  <p class="event-description">
+                    Dive deep into artificial intelligence with hands-on
+                    workshops covering machine learning, neural networks, and
+                    practical AI applications.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$45</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>Individual</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="2">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=2" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-2">
+                  <h4>What You Will Learn</h4>
+                  <ul>
+                    <li>Fundamentals of machine learning algorithms</li>
+                    <li>Building and training neural networks</li>
+                    <li>Natural language processing techniques</li>
+                    <li>Computer vision applications</li>
+                    <li>Ethical considerations in AI development</li>
+                  </ul>
+                  <h4>Prerequisites</h4>
+                  <p>Basic programming knowledge required</p>
+                </div>
+              </div>
+
+              <!-- Event 3 -->
+              <div class="event-card" data-category="competition">
+                <div class="event-image">
+                  <img
+                    src="images/placeholder.svg"
+                    alt="Startup Pitch Competition"
+                  />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">Startup Pitch Competition</h3>
+                    <span class="event-category competition">Competition</span>
+                  </div>
+                  <p class="event-description">
+                    Present your innovative tech startup idea to a panel of
+                    industry experts and investors. Gain valuable feedback and
+                    compete for funding.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$50</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>1-3 members</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-award"></i>
+                      <span>$15,000 investment</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="3">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=3" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-3">
+                  <h4>Competition Rules</h4>
+                  <ul>
+                    <li>5-minute pitch presentation followed by Q&A</li>
+                    <li>Must have a working prototype or MVP</li>
+                    <li>Business must be less than 2 years old</li>
+                    <li>Pre-submission of pitch deck required</li>
+                    <li>
+                      Open to software, hardware, and tech-enabled services
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Event 4 -->
+              <div class="event-card" data-category="workshop">
+                <div class="event-image">
+                  <img
+                    src="images/placeholder.svg"
+                    alt="Web Development Bootcamp"
+                  />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">Web Development Bootcamp</h3>
+                    <span class="event-category workshop">Workshop</span>
+                  </div>
+                  <p class="event-description">
+                    A comprehensive workshop series covering modern web
+                    development from fundamentals to advanced topics.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$60</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>Individual</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="4">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=4" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-4">
+                  <h4>What You Will Learn</h4>
+                  <ul>
+                    <li>HTML5, CSS3 and JavaScript fundamentals</li>
+                    <li>Responsive design principles</li>
+                    <li>Frontend frameworks (React/Vue)</li>
+                    <li>Backend development with Node.js</li>
+                    <li>Database integration and deployment strategies</li>
+                  </ul>
+                  <h4>Prerequisites</h4>
+                  <p>No prior experience required</p>
+                </div>
+              </div>
+
+              <!-- Event 5 -->
+              <div class="event-card" data-category="competition">
+                <div class="event-image">
+                  <img
+                    src="images/placeholder.svg"
+                    alt="Cybersecurity CTF Challenge"
+                  />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">Cybersecurity CTF Challenge</h3>
+                    <span class="event-category competition">Competition</span>
+                  </div>
+                  <p class="event-description">
+                    Test your security skills in this Capture The Flag
+                    competition featuring various cybersecurity challenges and
+                    puzzles.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$25</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>1-3 members</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-award"></i>
+                      <span>$5,000 in prizes</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="5">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=5" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-5">
+                  <h4>Competition Rules</h4>
+                  <ul>
+                    <li>
+                      Challenges in web security, cryptography, forensics, and
+                      more
+                    </li>
+                    <li>Teams earn points by capturing flags</li>
+                    <li>No attacking the competition infrastructure</li>
+                    <li>Time-based scoring system</li>
+                    <li>Multiple difficulty levels available</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Event 6 -->
+              <div class="event-card" data-category="social">
+                <div class="event-image">
+                  <img src="images/placeholder.svg" alt="Tech Trivia Night" />
+                </div>
+                <div class="event-content">
+                  <div class="event-header">
+                    <h3 class="event-title">Tech Trivia Night</h3>
+                    <span class="event-category social">Social</span>
+                  </div>
+                  <p class="event-description">
+                    A fun-filled evening testing your knowledge of technology,
+                    pop culture, and more with great prizes and networking
+                    opportunities.
+                  </p>
+                  <div class="event-meta">
+                    <div class="event-meta-item">
+                      <i class="fas fa-clock"></i>
+                      <span>$15</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-users"></i>
+                      <span>3-5 members</span>
+                    </div>
+                    <div class="event-meta-item">
+                      <i class="fas fa-award"></i>
+                      <span>Tech gadgets</span>
+                    </div>
+                  </div>
+                  <div class="event-actions">
+                    <button class="toggle-details" data-event="6">
+                      Show Details <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="register.html?event=6" class="btn btn-primary"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+                <div class="event-details" id="details-6">
+                  <h4>Event Details</h4>
+                  <ul>
+                    <li>Multiple rounds of tech-focused trivia questions</li>
+                    <li>Team-based competition</li>
+                    <li>Food and beverages provided</li>
+                    <li>
+                      Networking opportunities with industry professionals
+                    </li>
+                    <li>Prizes for top three teams</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="no-events" id="no-events-message">
+              <p>No events found matching your search criteria.</p>
+              <button class="clear-filters" id="clear-filters">
+                Clear filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <div class="footer-logo">
+              <img
+                src="images/placeholder.svg"
+                alt="Tech Zephyr"
+                width="200"
+                height="60"
+              />
+            </div>
+            <p>
+              Tech Zephyr brings together the brightest minds in technology for
+              an unforgettable experience of innovation, learning, and
+              networking.
+            </p>
+            <div class="footer-social">
+              <a href="https://facebook.com/" target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://twitter.com/" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://instagram.com/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://linkedin.com/" target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="schedule.html">Schedule</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="register.html">Register</a></li>
+              <li><a href="faqs.html">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Resources</h3>
+            <ul class="footer-links">
+              <li><a href="sponsorship.html">Sponsorship</a></li>
+              <li><a href="venue.html">Venue</a></li>
+              <li><a href="past-events.html">Past Events</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>contact@techzephyr.com</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span>+1 (123) 456-7890</span>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span
+                  >Tech Center, 123 Innovation St,<br />San Francisco, CA</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Tech Zephyr. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="events.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Zephyr - Team Registration</title>
+    <link rel="stylesheet" href="registration.css" />
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      integrity="sha512-Fo3rlrZj/k7ujTnH1zN+6D2C4qL70eO13e9Rr61vFZ+Hdj7w0nVr0hSmvF6W9npyR8F6T/j1T6i3f1nUpVZK9w==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <style>
+      .message {
+        margin: 1rem auto;
+        padding: 10px 15px;
+        width: fit-content;
+        border-radius: 5px;
+        font-weight: bold;
+        display: none;
+      }
+
+      .message.success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .submit-btn.loading::after {
+        content: "";
+        margin-left: 10px;
+        border: 2px solid #fff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        animation: spin 0.6s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <!-- <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img src="/placeholder.svg?height=40&width=120" alt="Tech Zephyr Logo" />
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link active">Home</a></li>
+          <li><a href="#" class="nav-link">Schedule</a></li>
+          <li><a href="#" class="nav-link">Events</a></li>
+          <li><a href="#" class="nav-link">Ambassador</a></li>
+          <li><a href="#" class="nav-link">Team</a></li>
+          <li><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <!Mobile Menu -->
+      <!-- <ul class="nav-menu mobile" id="mobileMenu">
+        <li><a href="#" class="nav-link active">Home</a></li>
+        <li><a href="#" class="nav-link">Schedule</a></li>
+        <li><a href="#" class="nav-link">Events</a></li>
+        <li><a href="#" class="nav-link">Ambassador</a></li>
+        <li><a href="#" class="nav-link">Team</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+      </ul>
+    </nav> -->
+
+    <!-- Registration Form Section -->
+    <main class="main-content">
+      <div class="form-container">
+        <div class="form-header">
+          <img src="logo.png" alt="Tech Zephyr Logo" />
+          <h1>Team Registration</h1>
+          <p>Join the premier tech event of 2025</p>
+        </div>
+
+        <form class="registration-form" id="teamForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teamLeaderName">Team Leader Name *</label>
+              <input type="text" id="teamLeaderName" name="teamLeaderName" required />
+            </div>
+            <div class="form-group">
+              <label for="teamName">Team Name *</label>
+              <input type="text" id="teamName" name="teamName" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email ID of Team Leader *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="whatsappNumber">WhatsApp Phone Number *</label>
+              <input type="tel" id="whatsappNumber" name="whatsappNumber" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="college">College *</label>
+              <input type="text" id="college" name="college" required />
+            </div>
+            <div class="form-group">
+              <label for="teamMembersStrength">Team Members Strength *</label>
+              <select id="teamMembersStrength" name="teamMembersStrength" required>
+                <option value="">Select team size</option>
+                <option value="1">1 Member</option>
+                <option value="2">2 Members</option>
+                <option value="3">3 Members</option>
+                <option value="4">4 Members</option>
+                <option value="5">5 Members</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row full-width">
+            <div class="form-group full-width">
+              <label>Select Events *</label>
+              <div class="custom-dropdown" id="eventDropdown">
+                <div class="dropdown-toggle" id="dropdownToggle">Select Events</div>
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                  <label><input type="checkbox" value="Event 1" /> Event 1</label>
+                  <label><input type="checkbox" value="Event 2" /> Event 2</label>
+                  <label><input type="checkbox" value="Event 3" /> Event 3</label>
+                  <label><input type="checkbox" value="Event 4" /> Event 4</label>
+                </div>
+              </div>
+              <input type="hidden" id="selectedEvents" name="selectedEvents" required />
+            </div>
+          </div>
+
+          <div class="team-members-section" id="teamMembersSection">
+            <h3>Team Member Details</h3>
+            <div id="teamMemberInputs"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Register Team</button>
+            <button type="reset" class="reset-btn" type="button">Clear Form</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Success/Error Messages -->
+    <div id="message" class="message"></div>
+
+    <script src="registration.js"></script>
+  </body>
+</html>
