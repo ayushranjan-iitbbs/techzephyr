@@ -25,11 +25,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+   padding: 1rem 2rem;
   position: sticky;
   top: 0;
   background: #000;
   z-index: 1000;
+   
 }
 
 .logo a {
@@ -143,16 +144,19 @@ body {
     padding: 2rem 1rem;
     animation: heroFadeIn 1.2s ease-out forwards;
     opacity: 0;
+    text-align: center;
   }
 
   .hero h1 {
     font-size: 2rem;
+    margin-bottom: 0.8rem;
     animation: slideUp 1s ease-out forwards;
   }
 
   .hero p {
     font-size: 1rem;
     max-width: 90%;
+    margin: 0 0 1.5rem 0;
     animation: slideUp 1.2s ease-out forwards;
   }
 
@@ -168,6 +172,7 @@ body {
     width: 100%;
   }
 }
+
 
 @keyframes heroFadeIn {
   from { opacity: 0; }
@@ -993,9 +998,24 @@ a {
 
   @keyframes typing {
     from { width: 0; }
-    to { width: 29ch; }  
+    to { width: 15ch; }  
   }
 
   @keyframes blink {
     50% { border-color: transparent; }
   }
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+.social-links a svg {
+  color: grey; /* Instagram pink tone */
+  stroke: grey  ;
+  transition: 0.3s;
+}
+.social-links a:hover svg {
+  stroke: #fd8524;
+}
