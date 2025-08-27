@@ -40,4 +40,6 @@ hrElements.forEach(hr => {
     hrObserver.observe(hr);
 });
  
- 
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("typing-text").textContent = "Where Innovation meets Inspiration ";
+  });
