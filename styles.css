@@ -119,6 +119,7 @@ body {
   font-weight: 900;
   color: var(--primary-color);
   margin-bottom: 1rem;
+   font-family: "Orbitron", sans-serif;
 }
 
 .hero p {
@@ -150,6 +151,7 @@ body {
   .hero h1 {
     font-size: 2rem;
     margin-bottom: 0.8rem;
+     font-family: "Orbitron", sans-serif;
     animation: slideUp 1s ease-out forwards;
   }
 
@@ -203,6 +205,7 @@ body {
 
   .hero h1 {
     font-size: 2rem;
+     font-family: "Orbitron", sans-serif;
   }
 
   .hero p {
@@ -351,7 +354,7 @@ body {
     color: #fd8524;
     font-weight: 700;
     font-size: 3rem;
-
+font-family: "Orbitron", sans-serif;
 }
 
 .subheading-1 {
@@ -359,6 +362,7 @@ body {
     color: #bac1d3;
     font-size: 1.25rem;
     font-weight: 300;
+
 }
 
 .section-1 {
@@ -370,6 +374,7 @@ body {
     gap: 1rem;
     text-align: center;
     margin: 0 5px;
+    margin-top: -99px;;
 }
 
 .all-category {
@@ -559,6 +564,7 @@ button {
     font-weight: 700;
     font-size: 2.5rem;
     margin-bottom: 50px;
+    
     position: relative;
     display: inline-block;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -998,7 +1004,7 @@ a {
 
   @keyframes typing {
     from { width: 0; }
-    to { width: 15ch; }  
+    to { width: 16ch; }  
   }
 
   @keyframes blink {
@@ -1018,4 +1024,63 @@ a {
 }
 .social-links a:hover svg {
   stroke: #fd8524;
+}
+
+
+.sponsors {
+  margin-top: 10px;;
+  background-color: black;
+  color: #fd8524;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: -30px;
+}
+
+.sponsor-heading {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif
+}
+
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.sponsor {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.sponsor img {
+  max-width: 100%;
+  max-height: 100%;
+ 
+  
+}
+
+.sponsor:hover {
+  transform: scale(1.1);
+}
+.soft-divider {
+  width: 90%;               
+  margin: 40px auto;         
+  height: 1px;              
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
 }

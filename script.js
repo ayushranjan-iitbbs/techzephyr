@@ -41,5 +41,5 @@ hrElements.forEach(hr => {
 });
  
   window.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("typing-text").textContent = "5 Socs 1 Summit";
+    document.getElementById("typing-text").textContent = "5 SOCs 1 SUMMIT ";
   });

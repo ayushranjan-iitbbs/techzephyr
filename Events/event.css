@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom: 3px solid #fd8524;
+  background: #0a0a0a;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-family: "Orbitron", sans-serif;  /* futuristic font */
+  font-weight: 600;
+  background: linear-gradient(90deg, #fd8524, #ffbb77);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+
+.event-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.event-card {
+  background: #0a0a0a;
+  border: 1px solid #222;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  min-height: 380px;
+}
+
+ 
+
+.event-icon {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.5rem 0;
+}
+
+.event-icon i {
+  color: #fd8524;
+  width: 48px;
+  height: 48px;
+}
+
+.event-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-content h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+
+.event-content .date {
+  color: #fd8524;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.event-content .date i {
+  width: 16px;
+  height: 16px;
+}
+
+.event-content .desc {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stats i {
+  color: #fd8524;
+  width: 18px;
+  height: 18px;
+}
+
+.functions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.functions button {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.functions .calendar {
+  background: #1e293b;
+  color: #fff;
+}
+
+.functions .calendar:hover {
+  background: #334155;
+  transform: scale(1.05);
+}
+
+.functions .learn-more {
+  background: #fd8524;
+  color: #fff;
+}
+
+.functions .learn-more:hover {
+  background: #e96e12;
+  transform: scale(1.05);
+}
