@@ -514,6 +514,7 @@ button {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+    margin-top: 20px;;
     margin-bottom: 10px;
      text-align: center;
 }

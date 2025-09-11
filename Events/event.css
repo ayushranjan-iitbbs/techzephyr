@@ -9,23 +9,51 @@ body {
 header {
   text-align: center;
   padding: 2rem 1rem;
-  border-bottom: 3px solid #fd8524;
   background: #0a0a0a;
 }
 
 header h1 {
   font-size: 3rem;
-  font-family: "Orbitron", sans-serif;  /* futuristic font */
+  font-family: "Orbitron", sans-serif;
   font-weight: 600;
   background: linear-gradient(90deg, #fd8524, #ffbb77);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
   margin: 0;
   letter-spacing: 1px;
 }
 
+/* 🔍 Search */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto 30px;
+  background: #1a1a1a;
+  padding: 8px 14px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 400px;
+}
 
+.search-container input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+
+.search-container i {
+  margin-left: 8px;
+  color: #fd8524;
+  width: 20px;
+  height: 20px;
+}
+
+/* 🗂 Events Grid */
 .event-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -42,9 +70,9 @@ header h1 {
   flex-direction: column;
   transition: all 0.3s ease;
   min-height: 380px;
+  max-width: 380px;
+   margin: 0 auto;
 }
-
- 
 
 .event-icon {
   background: #1a1a1a;
@@ -81,11 +109,6 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 6px;
-}
-
-.event-content .date i {
-  width: 16px;
-  height: 16px;
 }
 
 .event-content .desc {
@@ -129,10 +152,6 @@ header h1 {
   font-size: 0.95rem;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
 }
 
 .functions .calendar {

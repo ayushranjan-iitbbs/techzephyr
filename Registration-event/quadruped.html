@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadruped Registration</title>
+  <link rel="stylesheet" href="bplan.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="form-container">
+      <div class="form-header">
+        <img src="../logo.ico" alt="Quadruped Logo" />
+        <h1>Quadruped Registration - Techzephyr</h1>
+        <p>Build and compete with your robot at Tech Zephyr 2025</p>
+      </div>
+
+      <form class="registration-form" id="quadrupedForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="teamLeaderName">Team Leader Name *</label>
+            <input type="text" id="teamLeaderName" name="teamLeaderName" required />
+          </div>
+          <div class="form-group">
+            <label for="teamName">Team Name *</label>
+            <input type="text" id="teamName" name="teamName" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="whatsappNumber">WhatsApp Number *</label>
+            <input type="tel" id="whatsappNumber" name="whatsappNumber" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="college">College *</label>
+            <input type="text" id="college" name="college" required />
+          </div>
+          <div class="form-group">
+            <label for="teamMember2">2nd Member *</label>
+            <input type="text" id="teamMember2" name="teamMember2" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="teamMember3">3rd Member (Optional)</label>
+            <input type="text" id="teamMember3" name="teamMember3" />
+          </div>
+          <div class="form-group">
+            <label for="teamMember4">4th Member (Optional)</label>
+            <input type="text" id="teamMember4" name="teamMember4" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">Register</button>
+          <button type="reset" class="reset-btn">Clear</button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script src="quadruped.js"></script>
+</body>
+</html>

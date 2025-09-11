@@ -11,9 +11,16 @@
 </head>
 <body>
   <header>
-    <h1>Our Events</h1>
+    <h1>Techzephyr Upcoming Events</h1>
   </header>
 
+  <!-- 🔍 Search Bar -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search events by name...">
+    <i data-lucide="search"></i>
+  </div>
+
+  <!-- 📌 Event Section -->
   <section class="event-section">
     <!-- 1 -->
     <div class="event-card">
@@ -27,7 +34,7 @@
           <span><i data-lucide="trophy"></i> 20K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/bplan.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -45,7 +52,7 @@
           <span><i data-lucide="trophy"></i> 12K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/mlh.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -63,7 +70,7 @@
           <span><i data-lucide="trophy"></i> 15K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/webh.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -81,7 +88,7 @@
           <span><i data-lucide="trophy"></i> 10K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/cp.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -99,7 +106,7 @@
           <span><i data-lucide="trophy"></i> 8K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/designs.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -109,7 +116,7 @@
     <div class="event-card">
       <div class="event-icon"><i data-lucide="calendar"></i></div>
       <div class="event-content">
-        <h3>CAD Modelling</h3>
+        <h3>Cadathon</h3>
         <p class="date"><i data-lucide="calendar"></i> 26th October</p>
         <p class="desc">Showcase your CAD skills in design challenges.</p>
         <div class="stats">
@@ -117,7 +124,7 @@
           <span><i data-lucide="trophy"></i> 6K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/cad.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
@@ -125,44 +132,37 @@
 
     <!-- 7 -->
     <div class="event-card">
-      <div class="event-icon"><i data-lucide="vr"></i></div>
+      <div class="event-icon"><i data-lucide="calendar"></i></div>
       <div class="event-content">
-        <h3>AR/VR Challenge</h3>
+        <h3>Quadruped</h3>
         <p class="date"><i data-lucide="calendar"></i> 25th October</p>
-        <p class="desc">Dive into augmented & virtual reality projects.</p>
+        <p class="desc">RISC - Robotics Quadruped Challenge.</p>
         <div class="stats">
           <span><i data-lucide="users"></i> 90+ registered</span>
           <span><i data-lucide="trophy"></i> 7K+ Cash Prizes</span>
         </div>
         <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
+          <button class="calendar" onclick="window.location.href='../Registration-event/quadruped.html'">Register Now</button>
           <button class="learn-more">Learn More</button>
         </div>
       </div>
     </div>
 
-    <!-- 8 -->
-    <div class="event-card">
-      <div class="event-icon"><i data-lucide="lightbulb"></i></div>
-      <div class="event-content">
-        <h3>Innovation Expo</h3>
-        <p class="date"><i data-lucide="calendar"></i> 26th October</p>
-        <p class="desc">Pitch your innovations to industry leaders.</p>
-        <div class="stats">
-          <span><i data-lucide="users"></i> 100+ registered</span>
-          <span><i data-lucide="trophy"></i> 9K+ Cash Prizes</span>
-        </div>
-        <div class="functions">
-          <button class="calendar"><i data-lucide="calendar-plus"></i>Register Now</button>
-          <button class="learn-more">Learn More</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    
 
-  <script>
-    lucide.createIcons();
-  </script>
+<script>
+  lucide.createIcons();
+  // 🔍 Search filter
+  document.getElementById("searchInput").addEventListener("keyup", function() {
+    const query = this.value.toLowerCase();
+    const events = document.querySelectorAll(".event-card");
+    events.forEach(event => {
+      const name = event.querySelector("h3").textContent.toLowerCase();
+     
+      event.style.display = name.includes(query) ? "" : "none";
+    });
+  });
+</script>
+
 </body>
 </html>
-

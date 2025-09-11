@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadathon Registration</title>
+  <link rel="stylesheet" href="bplan.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="form-container">
+      <div class="form-header">
+        <img src="../logo.ico" alt="Cadathon Logo" />
+        <h1>Cadathon Registration - Techzephyr</h1>
+        <p>Show your CAD skills at Tech Zephyr 2025</p>
+      </div>
+
+      <form class="registration-form" id="cadathonForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="teamLeaderName">Team Leader Name *</label>
+            <input type="text" id="teamLeaderName" name="teamLeaderName" required />
+          </div>
+          <div class="form-group">
+            <label for="teamName">Team Name *</label>
+            <input type="text" id="teamName" name="teamName" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="whatsappNumber">WhatsApp Number *</label>
+            <input type="tel" id="whatsappNumber" name="whatsappNumber" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="college">College *</label>
+            <input type="text" id="college" name="college" required />
+          </div>
+          <div class="form-group">
+            <label for="teamMember2">2nd Member (Optional)</label>
+            <input type="text" id="teamMember2" name="teamMember2" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">Register</button>
+          <button type="reset" class="reset-btn">Clear</button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script src="cadathon.js"></script>
+</body>
+</html>

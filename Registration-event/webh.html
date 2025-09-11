@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B-Plan Registration</title>
+    <link rel="stylesheet" href="bplan.css" />
+    <link rel="icon" type="image/ico" sizes="32x32" href="logo.ico">
+  </head>
+  <body>
+    <main class="main-content">
+      <div class="form-container">
+        <div class="form-header">
+          <img src="../logo.ico" alt="B-Plan Logo" />
+          <h1>Team Registration for Web Hackathon</h1>
+          <p>Showcase your innovative business plan at Tech Zephyr 2025</p>
+        </div>
+
+        <form class="registration-form" id="bplanForm">
+          <!-- Row 1 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teamLeaderName">Team Leader Name *</label>
+              <input type="text" id="teamLeaderName" name="teamLeaderName" required />
+            </div>
+            <div class="form-group">
+              <label for="teamName">Team Name *</label>
+              <input type="text" id="teamName" name="teamName" required />
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email ID of Team Leader *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="whatsappNumber">WhatsApp Phone Number *</label>
+              <input type="tel" id="whatsappNumber" name="whatsappNumber" required />
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="college">College *</label>
+              <input type="text" id="college" name="college" required />
+            </div>
+            <div class="form-group">
+              <label for="teamMember2">2nd Team Member Name *</label>
+              <input type="text" id="teamMember2" name="teamMember2" required />
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teamMember3">3rd Team Member Name (Optional)</label>
+              <input type="text" id="teamMember3" name="teamMember3" />
+            </div>
+            <div class="form-group">
+              <label for="teamMember4">4th Team Member Name (Optional)</label>
+              <input type="text" id="teamMember4" name="teamMember4" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Register Team</button>
+            <button type="reset" class="reset-btn" type="button">Clear Form</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Success/Error Messages -->
+    <div id="message" class="message"></div>
+
+    <script src="bplan.js"></script>
+  </body>
+</html>
